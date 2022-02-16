@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h2>City Detail</h2>
+    <a class="m-0 float-right btn btn-success btn-sm" th:href="@{/show}">Exit<i class="fas fa-chevron-right"></i></a>
+    <form>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Country</th>
+                <th scope="col">Area</th>
+                <th scope="col">Population</th>
+                <th scope="col">GDP</th>
+                <th scope="col">Describe</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:object="${city}" class="table-primary">
+                <input th:field="*{id}" hidden>
+                <td><input th:field="*{nameCity}"></td>
+                <td th:text="${city.country.getName()}"></td>
+                <td><input th:field="*{area}"></td>
+                <td><input th:field="*{population}"></td>
+                <td><input th:field="*{gdp}"></td>
+                <td><input th:field="*{describeTheCity}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+    <tr>
+        <td>
+            <button class="btn btn-warning"><a th:href="@{/edit/{id}(id=${city.id})}">Edit</a></button>
+        </td>
+        <td>
+            <button class="btn btn-danger"><a th:href="@{/delete/{id}(id=${city.id})}">Delete</a></button>
+        </td>
+    </tr>
+</div>
+</body>
+</html>
